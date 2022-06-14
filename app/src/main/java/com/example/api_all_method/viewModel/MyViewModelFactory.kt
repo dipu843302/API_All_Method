@@ -6,7 +6,7 @@ import com.example.api_all_method.repository.MyRepository
 
 class MyViewModelFactory(private val myRepository: MyRepository):ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MainActivityViewModel(myRepository ) as T
+       return MyViewModel(myRepository ) as T
     }
 
 }

@@ -3,7 +3,7 @@ package com.example.api_all_method.api
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object RetroInstance {
+object Network {
 
     private const val BASE_URL = "https://gorest.co.in/public/v2/"
 

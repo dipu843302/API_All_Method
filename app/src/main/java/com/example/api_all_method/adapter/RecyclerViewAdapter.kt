@@ -8,32 +8,40 @@ import com.example.api_all_method.R
 import com.example.api_all_method.model.User
 import kotlinx.android.synthetic.main.item_layout.view.*
 
-class RecyclerViewAdapter() : RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
+class RecyclerViewAdapter(private val list: List<User>,val itemClick:ItemClick) :
+    RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
 
-    var userList = mutableListOf<User>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater =
             LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent, false)
-        return MyViewHolder(inflater)
+        return MyViewHolder(inflater,itemClick)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-       holder.bind(userList[position])
+        holder.bind(list[position])
     }
 
     override fun getItemCount(): Int {
-        return userList.size
+        return list.size
     }
 
-    class MyViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    class MyViewHolder(private val view: View, private val itemClick:ItemClick) : RecyclerView.ViewHolder(view) {
 
         fun bind(data: User) {
             view.apply {
-                textViewName.text=data.name
-                textViewEmail.text=data.email
-                textViewStatus.text=data.status
+                textViewName.text = data.name
+                textViewEmail.text = data.email
+                textViewStatus.text = data.status
+
+                linearLayout.setOnClickListener{
+                    itemClick.clickListener(3175)
+                }
             }
         }
     }
 
+    interface ItemClick {
+        fun clickListener(id: Int)
+    }
 }
