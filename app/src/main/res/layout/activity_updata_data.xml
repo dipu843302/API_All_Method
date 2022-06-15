@@ -5,43 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp"
-    tools:context=".activity.CreateNewUser">
-
+    android:layout_margin="10dp"
+    tools:context=".activity.UpdateDataActivity">
     <EditText
-        android:id="@+id/etName"
+        android:id="@+id/etName2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:hint="Name" />
 
     <EditText
-        android:id="@+id/etEmail"
+        android:id="@+id/etEmail2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:hint="Email"
-
         android:padding="5dp" />
 
     <EditText
-        android:id="@+id/etStatus"
+        android:id="@+id/etStatus2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:hint="Status" />
 
-    <EditText
-        android:id="@+id/etGender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Gender" />
-
     <Button
-        android:id="@+id/btnSubmit"
+        android:id="@+id/update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="Submit" />
+        android:text="Update" />
 </LinearLayout>

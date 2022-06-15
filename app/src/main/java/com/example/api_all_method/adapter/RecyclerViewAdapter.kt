@@ -1,5 +1,6 @@
 package com.example.api_all_method.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,7 @@ import com.example.api_all_method.R
 import com.example.api_all_method.model.User
 import kotlinx.android.synthetic.main.item_layout.view.*
 
-class RecyclerViewAdapter(private val list: List<User>,val itemClick:ItemClick) :
+class RecyclerViewAdapter(private val list: List<User>, private val itemClick:ItemClick) :
     RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
 
 
@@ -34,14 +35,21 @@ class RecyclerViewAdapter(private val list: List<User>,val itemClick:ItemClick) 
                 textViewEmail.text = data.email
                 textViewStatus.text = data.status
 
-                linearLayout.setOnClickListener{
-                    itemClick.clickListener(3175)
+                delete.setOnClickListener{
+
+                 itemClick.deleteData(data.id!!)
+                    Log.d("delete",data.id.toString())
                 }
+                edit.setOnClickListener{
+                    itemClick.updateTheData(data)
+                }
+
             }
         }
     }
 
-    interface ItemClick {
-        fun clickListener(id: Int)
-    }
+
+}  interface ItemClick {
+    fun deleteData(id: Int)
+    fun updateTheData(user:User)
 }

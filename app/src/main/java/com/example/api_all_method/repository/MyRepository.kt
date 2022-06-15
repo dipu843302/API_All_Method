@@ -3,16 +3,12 @@ package com.example.api_all_method.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.api_all_method.api.ApiInterface
-import com.example.api_all_method.api.Network
-import com.example.api_all_method.model.CreateUserItem
 import com.example.api_all_method.model.User
 import com.example.api_all_method.model.UserList
+import com.example.api_all_method.model.UserUpdate
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MyRepository(private val apiInterface: ApiInterface) {
 
@@ -29,7 +25,7 @@ class MyRepository(private val apiInterface: ApiInterface) {
     suspend fun getMyData() {
         val result = apiInterface.getUserList()
         if (result.body() != null) {
-            myLiveData.postValue(result.body())
+            myLiveData.value=(result.body())
         }
     }
 
@@ -42,7 +38,13 @@ class MyRepository(private val apiInterface: ApiInterface) {
 
     fun deleteData(id:Int){
         CoroutineScope(Dispatchers.IO).launch {
-           apiInterface.deleteUser(id.toString())
+           apiInterface.deleteUser(id)
+        }
+    }
+
+    fun updateData(id:Int,userUpdate: UserUpdate){
+        CoroutineScope(Dispatchers.IO).launch {
+            apiInterface.updateData(id.toString(),userUpdate)
         }
     }
 }

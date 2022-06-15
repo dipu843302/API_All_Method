@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.api_all_method.R
 import com.example.api_all_method.api.ApiInterface
 import com.example.api_all_method.api.Network
-import com.example.api_all_method.model.CreateUserItem
 import com.example.api_all_method.model.User
 import com.example.api_all_method.repository.MyRepository
 import com.example.api_all_method.viewModel.MyViewModel
@@ -17,9 +16,7 @@ import kotlinx.android.synthetic.main.activity_create_new_user.*
 
 class CreateNewUser : AppCompatActivity() {
 
-    var id = 1
     lateinit var viewModel: MyViewModel
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +29,9 @@ class CreateNewUser : AppCompatActivity() {
             ViewModelProvider(this, MyViewModelFactory(repository)).get(MyViewModel::class.java)
 
         btnSubmit.setOnClickListener {
-            val gender=etGender.text.toString()
+            val gender = etGender.text.toString()
             val status = etStatus.text.toString()
-            if( (gender=="male" || gender=="female")  &&(status=="active" || status=="inactive") ){
+            if ((gender == "male" || gender == "female") && (status == "active" || status == "inactive")) {
                 val user = User(
                     email = etEmail.text.toString(),
                     gender = gender,
@@ -42,15 +39,17 @@ class CreateNewUser : AppCompatActivity() {
                     status = status
                 )
                 viewModel.createUser(user)
-            }else {
+                Toast.makeText(this, "Created successfully", Toast.LENGTH_SHORT).show()
+                onBackPressed()
+            } else {
                 Toast.makeText(this, "Invalid details", Toast.LENGTH_SHORT).show()
             }
         }
 
-       viewModel.getResult().observe(this){
-           val data=it.id
-           Log.d("check",data.toString())
-           Toast.makeText(this, data.toString(), Toast.LENGTH_SHORT).show()
-       }
+        viewModel.getResult().observe(this) {
+            val data = it
+            Log.d("check", data.toString())
+            Toast.makeText(this, data.toString(), Toast.LENGTH_SHORT).show()
+        }
     }
 }

@@ -1,8 +1,8 @@
 package com.example.api_all_method.api
 
-import com.example.api_all_method.model.CreateUserItem
 import com.example.api_all_method.model.User
 import com.example.api_all_method.model.UserList
+import com.example.api_all_method.model.UserUpdate
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -19,7 +19,24 @@ interface ApiInterface {
         "Content-Type:application/json",
         "Authorization: Bearer 31dbc54e6d9d7680cda71286781164fbdeced7dafb33250ca119a2bbcbaa99b4"
     )
+   
     suspend fun createUser(@Body params: User): User
+
+    @DELETE("users/{user_id}")
+    @Headers(
+        "Accept:application/json",
+        "Content-Type:application/json",
+        "Authorization: Bearer 31dbc54e6d9d7680cda71286781164fbdeced7dafb33250ca119a2bbcbaa99b4"
+    )
+    suspend fun deleteUser(@Path("user_id") user_id:Int)
+
+    @PUT("users/{user_id}")
+    @Headers(
+        "Accept:application/json",
+        "Content-Type:application/json",
+        "Authorization: Bearer 31dbc54e6d9d7680cda71286781164fbdeced7dafb33250ca119a2bbcbaa99b4"
+    )
+    suspend fun updateData(@Path("user_id") user_id: String,@Body userUpdate: UserUpdate):User
 
 //    //   https://gorest.co.in/public/v2/users?name=a
 //    @GET("users")
@@ -41,12 +58,6 @@ interface ApiInterface {
 //    )
 //    fun updateUser(@Path("user_id") user_id: String, @Body params: User): Call<UserResponse>
 //
-    @DELETE("users/{user_id}")
-    @Headers(
-        "Accept:application/json",
-        "Content-Type:application/json",
-        "Authorization: Bearer 31dbc54e6d9d7680cda71286781164fbdeced7dafb33250ca119a2bbcbaa99b4"
-    )
-  suspend fun deleteUser(@Path("user_id") user_id: String)
+
 
 }
