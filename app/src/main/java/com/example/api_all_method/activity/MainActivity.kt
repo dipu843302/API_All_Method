@@ -32,13 +32,13 @@ class MainActivity : AppCompatActivity(), ItemClick {
 
         setUpViewModel()
         getTheData()
-
     }
 
     private fun setUpViewModel() {
-        val api = Network.getRetrofitInstance().create(ApiInterface::class.java)
+       val api = Network.getRetrofitInstance().create(ApiInterface::class.java)
         val repository = MyRepository(api)
-        viewModel = ViewModelProvider(this, MyViewModelFactory(repository)).get(MyViewModel::class.java)
+        viewModel =
+            ViewModelProvider(this, MyViewModelFactory(repository)).get(MyViewModel::class.java)
     }
 
     private fun getTheData() {
@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity(), ItemClick {
 
     override fun deleteData(id: Int) {
         viewModel.deleteData(id)
+        viewModel.callData()
     }
 
     override fun updateTheData(user: User) {
@@ -71,6 +72,7 @@ class MainActivity : AppCompatActivity(), ItemClick {
 
     override fun onResume() {
         super.onResume()
-       getTheData()
+        viewModel.callData()
+
     }
 }

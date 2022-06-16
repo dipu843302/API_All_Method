@@ -37,19 +37,22 @@ class CreateNewUser : AppCompatActivity() {
                     gender = gender,
                     name = etName.text.toString(),
                     status = status
+
                 )
                 viewModel.createUser(user)
                 Toast.makeText(this, "Created successfully", Toast.LENGTH_SHORT).show()
-                onBackPressed()
+
             } else {
                 Toast.makeText(this, "Invalid details", Toast.LENGTH_SHORT).show()
             }
         }
 
         viewModel.getResult().observe(this) {
-            val data = it
-            Log.d("check", data.toString())
-            Toast.makeText(this, data.toString(), Toast.LENGTH_SHORT).show()
+            val data = it.id
+            Log.d("created", data.toString())
+            onBackPressed()
         }
     }
+
+
 }

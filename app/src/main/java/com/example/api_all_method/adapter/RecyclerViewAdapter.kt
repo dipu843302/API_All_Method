@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.api_all_method.R
 import com.example.api_all_method.model.User
@@ -39,6 +40,7 @@ class RecyclerViewAdapter(private val list: List<User>, private val itemClick:It
 
                  itemClick.deleteData(data.id!!)
                     Log.d("delete",data.id.toString())
+                    Toast.makeText(context, "Data deleted", Toast.LENGTH_SHORT).show()
                 }
                 edit.setOnClickListener{
                     itemClick.updateTheData(data)

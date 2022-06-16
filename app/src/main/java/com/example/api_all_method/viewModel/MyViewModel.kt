@@ -10,7 +10,8 @@ import kotlinx.coroutines.launch
 
 class MyViewModel(private val repository: MyRepository) : ViewModel() {
 
-    init {
+
+    fun callData(){
         viewModelScope.launch(Dispatchers.IO) {
             repository.getMyData()
         }
@@ -19,9 +20,9 @@ class MyViewModel(private val repository: MyRepository) : ViewModel() {
     fun get() = repository.getData()
     fun getResult() = repository.getResult()
 
-    fun createUser(user: User) {
+    fun createUser(user: User) =
         repository.createData(user)
-    }
+
     fun deleteData(id:Int){
         repository.deleteData(id)
     }

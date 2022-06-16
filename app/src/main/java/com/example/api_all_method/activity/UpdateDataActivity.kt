@@ -39,7 +39,5 @@ class UpdateDataActivity : AppCompatActivity() {
             Log.d("update", id.toString())
             onBackPressed()
         }
-
-
     }
 }
